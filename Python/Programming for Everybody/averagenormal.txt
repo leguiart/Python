@@ -1,0 +1,9 @@
+i=0
+while True:
+    inp=raw_input('Enter values: ')
+    if inp=='exit': break
+    i=i+1
+    sum=inp+sum
+    
+av=sum/i
+print av

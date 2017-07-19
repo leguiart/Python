@@ -1,0 +1,315 @@
+
+
+
+Structural Programming: It is that which runs in a linear way from some point that would be the start and to the end, every bit of the program is looking for input from the user.
+
+Event Driven Programming: It initializes and then it starts waiting, the program waits until there is some event that triggers action, it is based normally on the use of handlers.
+
+These events sublclasify in:
+-Timer events
+Happen Periodically over time
+
+-Input events
+Buttons
+Text Box
+
+-Keyboard "
+Key up
+Key down
+
+-Mouse "
+Click
+Drag
+
+Ej.
+
+---------------------------------------------------------------------------------------------------------------------------------------------
+# Example of a simple event-driven program
+
+# CodeSkulptor GUI module, this module was created by the proffesors of the class for creating interactive aplications in python
+import simplegui
+
+# Event handler, This event handler as its name says will handle the main event in the program, which consists in just printing 'tick!' in form of a simple function with no input
+def tick():
+    print "tick!"
+
+# Register handler, Here the handler of the event is registered to occur in function of a function that comes with the simplegui which sets a timer for the event
+timer = simplegui.create_timer(1000, tick)
+
+# Start timer
+timer.start()
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+In this particular case, the program never stops printing tick!, with no iterations, this is what event driven programming is about. The program keeps doing what it was told to do, and just
+waits until there is another  event, which in this case, is not.
+
+
+Event Que.
+The event que is a list of events that are in the program that hen system runs with no particular order just depending on actions taken, in the  moment al events are done running the 
+system will keep waiting indefinately. Every event runs from a handler, just one particular handler can be run at a time.
+
+
+Local Variables & Global Variables.
+
+
+Ej.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+# global vs local examples
+
+# num1 is a global variable
+
+num1 = 1
+print num1
+
+# num2 is a local variable
+
+def fun():
+    num1 = 2
+    num2 = num1 + 1
+    print num2
+    
+fun()
+
+
+# the scope of global num1 is the whole program, num 1 remains defined
+print num1
+
+# the scope of the variable num2 is fun(), num2 is now undefined
+# print num2
+
+
+# why use local variables?
+# give a descriptive name to a quantity
+# avoid computing something multiple times
+
+def fahren_to_kelvin(fahren):
+    celsius = (5.0 / 9) * (fahren - 32)
+    print celsius
+    zero_celsius_in_kelvin = 273.15
+    return celsius + zero_celsius_in_kelvin
+
+print fahren_to_kelvin(212)
+
+
+
+
+
+# the risk/reward of using global variables
+
+# risk - consider the software system for an airliner
+#		critical piece - flight control system
+#		non-critical piece - in-flight entertainment system
+
+# both systems might use a variable called "dial"
+# we don't want possibility that change the volume on your audio
+# causes the plane's flaps to change!
+
+
+
+# example
+num = 4
+
+def fun1():
+    global num
+    num = 5
+    
+def fun2():
+    global num
+    num = 6
+
+# note that num changes, this is because of the use of the statement global inside the function which enables to reference a variable  outside the function
+print num
+fun1()
+print num
+fun2()
+print num
+
+# global variables are an easy way for event handlers
+# to communicate game information.
+
+# safer method - but they required more sophisticated
+# object-programming techniques
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+SimpleGUI: Explanation
+SimpleGui is the module destined exclusively for the purpose of being able to run completely interactive aplications directly from the browser
+
+
+
+Ej.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+import simplegui
+
+#We create a global variable containing the string that will print out on a message
+message = "Welcome!" 
+
+# Handler for mouse click event
+def click():
+    global message
+    message = "Good job!"
+
+# Handler to draw on canvas that takes as one parameter the global variable message as well as the position, size of the font and color of it
+def draw(canvas):
+    canvas.draw_text(message, [50,112], 36, "Red")
+
+# Create a frame and assign callbacks to event handlers
+frame = simplegui.create_frame("Home", 300, 200)
+frame.add_button("Click me", click)
+frame.set_draw_handler(draw)
+
+# Start the frame animation
+frame.start()
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+Recommended Programming Structure.
+
+Global variables
+Helper Functions
+Classes
+Define event handlers
+Create a frame
+Register event handlers
+Start Frame and Timers
+
+
+Ej.
+------------------------------------------------------------------------------------------------------------------------------------------------
+# SimpleGUI program template
+
+# Import the module
+import simplegui
+
+# Define global variables (program state)
+counter=0
+# Define "helper" functions
+def increment():
+    global counter
+    counter=counter+1
+    
+# Define event handler functions
+# First function calls helper function increment and prints the global variable counter
+def tick():
+    increment()
+    print counter
+# Second Function is for the secondary button that resets the counter    
+def button():
+    global counter
+    counter=0
+# Third function is for besides printing in the console the output of the program, printing in the canvas
+def text(canvas):
+    canvas.draw_text(str(counter),[150,112], 36, 'Blue')
+# Create a frame with all its elements, the first button which is for executing the handler function tick independant to the timer, and the first one for reseting the counter
+frame=simplegui.create_frame('simplegui test', 300, 200)
+frame.add_button('Click me', tick)
+frame.add_button('Reset', button)
+# Register event handlers, the first is for the counter to be printed in the canvas, the second is for the increments of the counter to occur every second
+frame.set_draw_handler(text)
+timer= simplegui.create_timer(1000, tick)
+
+# Start frame and timers
+frame.start()
+timer.start()
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+
+Frame Operations:
+simplegui.create_frame frame.set_canvas_background frame.start frame.get_canvas_textwidth frame.add_label frame.add_button frame.add_input frame.set_keydown_handler
+frame.set_keyup_handler frame.set_mouseclick_handler frame.set_mousedrag_handler frame.set_draw_handler
+
+
+
+With the next example we get to know how to set an input on simplegui interactive frame
+Simple Calculator Ex. 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+# calculator with all buttons
+
+
+import simplegui
+
+# intialize globals
+store = 0
+operand = 0
+
+
+# event handlers for calculator with a store and operand
+
+def output():
+    """prints contents of store and operand"""
+    print "Store = ", store
+    print "Operand = ", operand
+    print ""
+    
+def swap():
+    """ swap contents of store and operand"""
+    global store, operand
+    store, operand = operand, store
+    output()
+    
+def add():
+    """ add operand to store"""
+    global store
+    store = store + operand
+    output()
+
+def sub():
+    """ subtract operand from store"""
+    global store
+    store = store - operand
+    output()
+
+def mult():
+    """ multiply store by operand"""
+    global store
+    store = store * operand
+    output()
+
+def div():
+    """ divide store by operand"""
+    global store
+    store = store / operand
+    output()
+
+def enter(t):
+    """ enter a new operand"""
+    global operand
+    try:
+        operand = int(t)
+    except:
+        operand=float(t)
+    output()
+    
+
+# create frame
+f = simplegui.create_frame("Calculator",300,300)
+
+# register event handlers and create control elements
+f.add_button("Print", output, 100)
+f.add_button("Swap", swap, 100)
+f.add_button("Add", add, 100)
+f.add_button("Sub", sub, 100)
+f.add_button("Mult", mult, 100)
+f.add_button("Div", div, 100)
+f.add_input("Enter", enter, 100)
+f.set_canvas_background('White')
+
+
+# get frame rolling
+f.start()
+
+
+
+
+
+
+
+
+
+
