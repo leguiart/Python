@@ -1,0 +1,22 @@
+# Ignore office files
+*.doc
+*.docx
+*.ppt
+*.pptx
+
+# Ignore pdf files
+*.pdf
+
+# Ignore image files
+*.jpg
+*.jpeg
+*.JPEG
+*.png
+
+# Ignore video files
+*.mp4
+
+
+# Ignore build files
+__pycache__/
+*.db

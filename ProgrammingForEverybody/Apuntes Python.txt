@@ -1,0 +1,1619 @@
+Apuntes de programacion en Python.
+
+Conversion de tipos de datos
+
+Implicita.
+
+>>> 46.9+205
+251.9
+>>> 99/100
+0
+>>> 99/100.0
+0.99
+>>> 
+
+Cada vez que se tiene datos int y se efectuan operaciones con datos float los datos float seran dominantes y el interprete
+lo que hara sera tomar el resultado de la operacion como float.
+
+Explicita
+
+>>> x=8
+>>> float(x)
+8.0
+>>> int(x)
+8
+>>> f=float(x)
+>>> print f
+8.0
+>>> print int(f)/105
+0
+>>> f=int(x)
+>>> print f
+8
+>>> type(f)
+<type 'int'>
+>>> 
+
+Tambien se pueden utilizar las funciones float() e int() para convertir explicitamente variables con valores en ellas.
+En el ejemplo anterior se puede observar que para cambiar explicitamente el tipo de dato en una variable es necesario
+igualarla con la funcion, de otra forma solo se cambia temporalmente para efectos de la impresion en pantalla pero sin 
+cambiar e si el tipo de dato.
+
+>>> type(f)
+<type 'float'>
+>>> type(x)
+<type 'int'>
+
+Se puede utilizar la funcion type() para verificar el tipo de dato que se esta manejando
+
+>>> st="123"
+>>> print st
+123
+>>> type(st)
+<type 'str'>
+>>> intgr=int(st)
+>>> print intgr
+123
+>>> type(intgr)
+<type 'int'>
+>>> intgr+1
+124
+ st="tu mama en tanga"
+>>> intgr= int(st)
+
+Traceback (most recent call last):
+  File "<pyshell#22>", line 1, in <module>
+    intgr= int(st)
+ValueError: invalid literal for int() with base 10: 'tu mama en tanga'
+
+Tambien se pueden convertir datos de tipo string a numeros siempre y cuando el string contenga caracteres numericos, de 
+otra forma aparecera un mensaje de error.
+
+
+
+Input de usuario.
+
+>>> naw=raw_input("What is your name?")
+What is your name? Luis
+>>> print "Welcome", naw
+Welcome  Luis
+
+Para que python pida un dato al usuario se utiliza la funcion raw_input(), esta funcion siempre sera un string.
+
+Codigo:
+n=raw_input("Which floor do you want to go?")
+nus=int(n)+1
+print "your floor in the us would be", nus
+
+
+
+En pantalla:
+Which floor do you want to go? 3
+your floor in the us would be 4
+
+
+En este caso se utilizo el cambio de tipo de dato para poder sumar el dato que se dio.
+
+
+Operaciones con strings.
+
+>>> x= "yo "+ "bitch"
+>>> print x
+yo bitch
+>>> print x*5
+yo bitchyo bitchyo bitchyo bitchyo bitch
+>>> x= "yo "+ "bitch "
+>>> print x*5
+yo bitch yo bitch yo bitch yo bitch yo bitch 
+
+
+Ejercicio 1:
+
+Codigo:
+
+horas= raw_input("Cuantas horas trabajaste?")
+salario= raw_input("Cual es tu salario?")
+pago= int(horas) * float (salario)
+print "Tu pago total es:", pago
+
+Pantalla:
+
+Cuantas horas trabajaste?86
+Cual es tu salario?64.7
+Tu pago total es: 5564.2
+
+
+
+
+
+
+Try/Except Estructura condicional.
+
+Ej 2:
+pago=0
+while pago==0:
+    try:
+        horas= raw_input("Cuantas horas trabajaste?")
+        salario= raw_input("Cual es tu salario?")
+        pago= int(horas) * float (salario)
+    
+    except:
+        horas= "0"
+        salario= "0"
+        pago=0
+        print "ha habido un error, porfavor introduzca unicamente valores numericos"
+    
+
+print "Tu pago total es:", pago #holiiiiii
+
+
+
+La estructura condicional try/except es una forma de detectar errores en la ejecucion del codigo y que de esta manera si suceden no
+ocurra ningun problema con el programa y este prosiga con su ejecucion, cosa que de otra forma con seguridad no sucederia; regresaria
+simplemente un traceback error y el programa dejaria de funcionar.
+
+Ej 3: 
+pago=0
+while pago==0:
+    try:
+        horas= raw_input("Cuantas horas trabajaste?")
+        salario= raw_input("Cual es tu salario?")
+        pago= int(horas) * float (salario)
+    
+    except:
+        horas= "0"
+        salario= "0"
+        pago=0
+        print "Ha habido un error, porfavor introduzca unicamente valores numericos"
+
+horasbono=40
+salariobono=0        
+if horas>40:
+    salario= float(salario)
+    horas=int(horas)
+    horasbono= horas-horasbono
+    print "Horas extra trabajadas:",horasbono
+    salariobono= salario*horasbono
+    salariobono= salariobono*1.5
+    print "Bono de productividad:",salariobono
+    horas=40
+    pago= (horas*salario)+salariobono
+    
+else:
+    print "No has recibido bono de productividad"
+    
+print "Pago total:", pago #holiiiiii
+
+
+
+Funciones.
+
+Existen dos tipos de funciones:
+
+Funciones built-in, estas funciones son nativas del lenguaje en si, tales funciones son:
+raw_input(), float(), int(), type(), max().
+max(): se utiliza para encontrar el numero maximo en un arreglo o la letra mas grande (en cuanto
+a su numero en el alfabeto) en un string. Su homologo es min().
+
+Funciones creadas:
+
+Para crear funciones en python se utiliza: def funcion()
+Ej.
+def funcion():
+    print "Hello World"
+
+A los datos que se introducen en una funcion se les denomina argumentos.
+A una variable creada anteriormente y que se introduce en la funcion se le denomina parametro
+
+Ej1.
+lang=raw_input("Introduce your language: es, en, fr")
+def greet(lang):
+    if lang=="es"
+        print "Hola"
+    elif lang=="fr"
+	print "Bonjour"
+    else
+	print "hello"
+
+Return: Para que una funcion simplemente regrese un valor cuando se llama se utiliza return
+
+Ej2.
+
+def greet()
+    return "Hello, Welcome Mr./Mrs."
+name= raw_input("State your name: ")
+print greet(),name
+
+
+En pantalla:
+
+State your name: Luis
+Hello, Welcome Mr./Mrs. Luis
+
+Ej3.
+
+lang= raw_input("Choose your language: es, en, fr")
+def greet(lang):
+    if lang== "es":
+        return "Hola"
+    elif lang== "en":
+        return "Hello"
+    else:
+        return "Bonjour"
+        
+if lang=="es":
+    name=raw_input("Su nombre:")
+elif lang=="en":
+    name=raw_input("State your name:")
+else:
+    name=raw_input("votre nom")
+
+print greet(lang), name
+
+
+Se puede definir mas de un parametro en la funcion.
+
+Ej4.
+
+a=raw_input("")
+b=raw_input("")
+a=float(a)
+b=float(b)
+
+def add_two(a,b):
+    a=a+b
+    return a
+    
+print add_two(a,b)
+
+
+
+
+Bucles/Loops/Sentencias repetitivas:
+
+
+Iguales que en cualquier otro lenguaje.
+Para terminar loops infinitos se utiliza break
+
+Ej
+
+
+
+while true
+    line=raw_input(">")
+    if line=="done+-"
+        break
+    print line
+print "system ended"
+
+
+Para omitir una porcion del codigo se utiliza continue para que todo lo que se encuentre
+inmediatamente debajo sea omitido:
+
+Ej.2
+
+while True:
+    line=raw_input(">")
+    if line[0] == "#":
+        continue
+    if line=="done+-":
+        break
+    print line
+print "system ended"
+
+En el caso anterior se simula lo que sucede en el compilador de python, donde despues de un #
+se omite todo lo que este a la derecha, se utiliza line[0] == "#" con el lugar cero del la cadena
+line porque cualquier cadena se toma como un vector.
+
+Loops definidos:
+
+Ej 1.
+
+for i in[5,4,3,2,1]:
+    print i
+
+Se creo un vector i con 5 lugares y se le dijo especificamente al bucle que se repitiera 
+por la duracion del vector.
+
+Ej. 2
+
+largest_so_far=0
+i=[34,56,78,32,12,5,3,69]
+for num in i:
+    if num > largest_so_far:
+        largest_so_far= num
+    
+print "the largest number is:", largest_so_far    
+
+
+
+
+
+Ej. 3
+
+sum=0
+i=0
+num=0
+while True:
+    if num!="ex":
+    
+        num= raw_input("Enter number, exit with ex:")
+        try:
+            num= float(num)
+            sum= num+sum
+            i=i+1
+        except:        
+            continue
+            
+        
+        
+    elif num== "ex":
+        num= sum/i
+        break
+    
+print "Average:",num
+
+
+
+
+Variables booleanas.
+
+Ej 1.
+
+found= True
+for number in[34,89,9,5223,2324,3,8,12]:
+    if number>=20:
+        found= False
+    print number, found
+    found= True
+
+Se pueden utilizar variables con valores logicos para delinear si un cierto atributo de un numero
+se cumple o no.
+
+
+small= None
+for number in[34,89,9,5223,2324,3,8,12]:
+    if small== None:
+        small= number
+    elif number<small:
+        small= number
+    print  number
+print "smallest number", small
+    
+
+
+En el caso particular de encontrar el numero mas pequeño se utiliza valor None ya que no es
+practico utilizar un numero excesivamente grande.
+
+
+
+
+
+A veces como operador logico alternativo a "==" y "=!"para casos en los que se utilizan operadores 
+booleanos se utilizan los operadores "is" e "is not" si se utilizan con valores que no sean
+booleanos toman en cuenta que sean datos del mismo tipo como int con int o float con float.
+
+
+
+
+
+
+Strings (Cadenas)
+
+Strings o cadenas son vectores de caracteres que son creados automaticamente en python, como: n="hola"... etc.
+y como cualquier vector se le puede especificar a python la posicion de este, como:
+>>> n="hola"
+>>> a=n[2]
+>>> n
+'hola'
+>>> a
+'l'
+
+Se puede utilizar la funcion len() para contar las posiciones que tiene en total la cadena:
+>>> len(n)
+4
+
+
+Loops en cadenas.
+Ej1.
+Funcion len() emulada:
+
+w=""
+while w!="exit+-":
+    w=raw_input("Enter word:")
+    i=0
+    while True:
+        try:
+            w[i]
+            i=i+1
+        except:
+            break
+    print i
+
+Ej2.
+
+i=0
+word=""
+while word!="exit+-":
+    word=raw_input(">>>")
+    if word== "exit+-":
+        continue
+        
+    while i<len(word):
+        print word[i], i
+        i=i+1
+    print "Number of characters in the string:", i
+    i=0
+
+
+
+
+Libreria de funciones de cadenas
+
+
+Es una libreria en python que contiene una serie de funciones built-in para manipular cadenas.
+
+PEj.
+low(): Esta funcion desminuye toda letra mayuscula a minuscula
+
+Se puede utilizar la funcion dir(variable), sea una variable de cualquier tipo para que python informe al programador de todas las funciones que puede usar
+con esta variable.
+
+Otras funciones:
+capitalize(), str.replace[old,new[,count]], str.center[width[,fillchar]], variablestr.find(), str.lower() etc.
+
+
+Ej de find():
+
+>>> hello="hello there"
+>>> f=hello.find("th")
+>>> f
+6
+>>> f=hello.find("fin")
+>>> f
+-1
+
+se puede observar que el valor predeterminado de la funcion variablestr.find() es igual a -1, ya que al introducir posiciones inexistentes en la cadena la funcion
+simplemente regresa -1 
+
+Ej de str.lower()
+
+>>> f=hello.find("th")
+>>> f
+6
+>>> hello="HELLO THERE"
+>>> f=hello.lower()
+>>> f
+'hello there'
+
+
+
+Ej de str.replace:
+
+>>> hello="hello there Bob da Bob"
+>>> r=hello.replace("Bob", "Jane")
+>>> r
+'hello there Jane da Jane'
+>>> 
+
+
+Remover espacios es blanco:
+
+Se utiliza la funcion str.lstrip()(quitar espacio en blanco a la izquierda), str.rstrip()(quitar espacio en blanco a la derecha), str.strip() (quitar todos los espa
+cios a la derecha e izquierda)
+>>> greet= " Hola putito"
+>>> greet.lstrip()
+'Hola putito'
+>>> greet= "Hola putito      "
+>>> greet.rstrip()
+'Hola putito'
+>>> greet="      hola putito       "
+>>> greet.strip()
+'hola putito'
+>>> sentence= " Hola dogo gay weiubfbfqejhhj "
+
+
+
+
+
+Ej de str.find() para imprimir solo una parte de una cadena de una posicion a otra posicion en la cadena
+
+
+>>> sentence= " Hola dogo gay weiubfbfqejhhj "
+>>> gpos=sentence.find("g")
+>>> ypos=sentence.find("y", gpos)
+>>> ypos
+13
+>>> bits=sentence[gpos: ypos]
+>>> print bits
+go ga
+
+
+
+Lectura de archivos en python.
+
+Para que python lea archivos guardados en la memoria secundaria se utiliza la funcion open(), esta funcion se utiliza de esta forma:
+var=open(file.mode)-----> se asigna una variable que maneje el archivo que se quiere abrir de la memoria secundaria, esta variable se utiliza para abrir un camino
+que conecte al programa que se ejecuta desde la memoria primaria con el archivo que se quiera abrir de la memoria secundaria.
+Los parametros dentro de la funcion son el archivo que se quiere abrir y el modo en el que se quiere abrir (lectura, edicion, etc.).
+Lo que hace la funcion open() es crear una variable handle con la cual se pueden efectuar posteriormente todas las operaciones con el archivo.
+Para abrir los archivos estos deben estar en el mismo folder que donde se esta ejecutando python.
+
+Como en el lenguaje C, se pueden utilizar los caracteres \n para generar lineas nuevas de cadenas y \t para tabular.
+
+Se mencionan estos caracteres porque un documento de texto es una serie de cadenas con caracteres \n para crear nuevas lineas.
+
+Como se dijo, la funcion open se utiliza para crear variables que manejen el archivo con el que se quiere trabajar en python, no abre en si el archivo.
+Para abrir el archivo en forma se utilizan iteraciones en la variable handle de tal forma que la iteracion imprima cada bloque de las cadenas hasta cada \n, 
+esto quiere decir que se utilia for.
+Al utilizar for se puede tambien hacer toda clase de manipulaciones, por ejemplo se pueden contar las lineas del archivo
+muy facilmente, basicamente lo que hace usar sentencias for es tratar al archivo de texto como si fuera una serie de vectores apilados (no una matriz)
+cuyos finales se encuentran en cada \n.
+
+Ej.
+
+i=0
+wordcount=0
+lettercount=0
+fhand=open("Apuntes Python.txt")
+for linea in fhand:  #Este for se utiliza para imprimir cada linea, es decir cada vector (cadena) del archivo, con este for a su vez se pueden contar las lineas
+    print linea
+    i=i+1
+    for word in linea: #este for toma a cada vector y cuenta los lugares en el, se encuentra anidado al de las lineas precisamente por esa razon..
+        lettercount=lettercount+1
+        if word==" ": #junto con el for se utiliza un if para contar las palabras, es decir cada espacio en el vector, esta es la razon principal por la que no se utiliza la funcion len().
+            wordcount=wordcount+1
+print "Lines:", i
+print "Words:", wordcount
+print "Letters:", lettercount
+
+
+
+Ej2 (Sin conteo de palabras, utilizando funcion len())
+
+i=0
+lettercount=0
+fhand=open("Apuntes Python.txt")
+for linea in fhand:
+    print linea
+    i=i+1
+    lettercount=len(linea)+lettercount
+        
+print "Lines:", i
+print "Letters:", lettercount
+
+
+
+
+Se puede imprimir el archivo entero completamente como una sola cadena, esto se hace mediante
+la funcion str.read()
+
+Ej.
+
+fhand=open("Function.txt")
+f=fhand.read()
+print f
+
+
+
+En pantalla:
+
+lang= raw_input("Choose your language: es, en, fr")
+def greet(lang)
+    if lang== "es"
+        return "Hola"
+    elif lang== "en"
+        return "Hello"
+    else
+        return "Bonjour"
+        
+if lang=="es"
+    name=raw_input("Su nombre:")
+elif lang=="en"
+    name=raw_input("State your name:")
+else
+    name=raw_input("votre nom")
+
+print greet(), name
+
+
+Como se dijo anteriormente,los archivos en python pueden ser manipulados facilmente, es decir, se pueden implementar
+funciones en ellos etc.
+
+un ejemplo de esto seria:
+
+
+Ej.
+
+i=0  #Se declaran los valores de las variables de conteo
+wordcount=0
+lettercount=0
+l=0
+s=0
+wcounttwo=0
+fhand=open("Apuntes Python.txt") #Se declara la variable handle del archivo de texto que se desea manipular (en este caso es un programa no manipulable por el usuario)
+for linea in fhand: #Se inicia la iteracion para leer las oraciones de los archivos
+    linea=linea.strip() #Se limpian los espacios en blanco, esto incluye a los \n
+    if linea.startswith("Ej"): #Se utiliza la funcion str.startswith() en el condicional para buscar todas las lineas que empiezen con "Ej"
+        print "\n"
+        for linea in fhand: #Otro for para imprimir cinco lineas de cada ejemplo
+            linea=linea.strip()
+            if l==0: #Cuenta los ejemplos
+                s=s+1    
+            print linea 
+            l=l+1 #Cuenta las lineas totales de ejemplos
+            if l>=5: #Se utiliza break para finalizar el ciclo en cuanto llegue a cinco lineas, de otra forma el bucle seguiria hasta terminar de imprimir el archivo.
+                break
+            elif linea.startswith("Ej"): #Si antes de finalizar de imprimir las cinco lineas del ejemplo se encuentra con otro ejemplo, se reinicia el bucle.
+                l=0
+                continue
+    i=i+1
+    wcounttwo= wcounttwo+l #todo esto se encuentra fuera del if de ejemplos, esto contara las letras, las palabras y las lineas totales de todo el archivo.
+    l=0
+    for word in linea:
+        lettercount=lettercount+1
+        if word==" ":
+            wordcount=wordcount+1
+print "Lines:", i
+print "Words:", wordcount
+print "Letters:", lettercount
+print "Number of examples:", s
+print "Numer of lines of examples", wcounttwo
+
+
+
+En el codigo anterior lo que se esta haciendo es saltar ciertas partes del archivo mediante la funcion str.startswith(), a su vez se remueven espacios en blanco
+en todo el archivo.
+
+
+Ej2.
+
+fhand=open("Sakai.txt")
+for line in fhand:
+    line= line.rstrip()
+    if not line.startswith("From"):
+        continue
+    print line
+
+
+En lo anterior se buscan todas las lineas del archivo que comienzen con "From:"
+
+Ej3.
+
+filehand=open("Sakai.txt")
+domain="@uct.ac.za"
+for line in filehand:
+    line=line.rstrip()
+    if not domain in line:
+        continue 
+    elif domain in line:
+        print line
+        
+En este caso se buscan todas las lineas que contengan en ellas "@uct.ac.za", para hacer esto se utiliza el operador in en un condicional if.
+
+En Ej.1 para que el usuario pueda entrar el archivo que quiera simplemente se le asigna un raw_input() que lea la cadena con el nombre del archivo a abrir
+a una variable cualquiera (Notese que se utiliza la sentencia logica try/except para que en el caso de que el usuario introduzca un nombre de archivo invalido
+el programa no se detenga y en vez de eso de un mensaje de error y pida por un valor de nuevo).
+
+Ej1.2
+i=0
+wordcount=0
+lettercount=0
+l=0
+s=0
+wcounttwo=0
+while True:
+    while True:
+        try:
+            file_name=raw_input("Enter file name in file.type format or state if you want to exit by entering exit+-:")
+            if file_name=="exit+-":
+                break
+            fhand=open(file_name)
+            break
+        except:
+            print "Enter a valid name and make sure the file is in the same folder as this program"
+    if file_name=="exit+-":
+        break    
+    for linea in fhand:
+        linea=linea.strip()
+        if linea.startswith("Ej"): 
+            print "Ej",s+1 
+            for linea in fhand:
+                linea=linea.strip()
+                if l==0:
+                    s=s+1    
+                print linea
+                l=l+1
+                if l>=5:
+                    print "\n \n"
+                    break
+                elif linea.startswith("Ej"):
+                    l=0
+                    continue
+        i=i+1
+        wcounttwo= wcounttwo+l
+        l=0
+        for word in linea:
+            lettercount=lettercount+1
+            if word==" ":
+                wordcount=wordcount+1
+    print "Lines:", i
+    print "Words:", wordcount
+    print "Letters:", lettercount
+    print "Number of examples:", s
+    print "Numer of lines of examples", wcounttwo
+
+
+
+
+
+ dline=float(dline)
+        sum=dline+sum
+
+
+
+
+
+Este ejemplo resume todo lo anterior:
+
+Ej4.
+
+
+# Use the file name mbox-short.txt as the file name
+sum=0
+i=1
+while True:
+        try:
+            file_name=raw_input("Enter file name in file.type format:")
+            fhand=open(file_name)
+            break
+        except:
+            print "Enter a valid name and make sure the file is in the same folder as this program"
+for line in fhand:
+    if not line.startswith("X-DSPAM-Confidence:") : 
+        continue
+    else:    
+        print line
+        zpos=line.find(" ")
+        epos=line.find("\n")
+        dline=line[zpos:epos]
+        dline=dline.strip() 
+        dline=float(dline)
+        print dline
+        print "\n \n"
+        sum=dline+sum
+        i=i+1
+sum=sum/i
+print "Average spam confidence:", sum
+
+
+
+Listas.
+
+
+Las listas son objetos con varios valores, o constantes entre [] con varios valores, estos valores que se pueden introducir en la lista pueden ser de diferentes 
+clases, inclusive otras listas.
+
+Justo como en las cadenas de caracteres, se puede usar el operador de subindice variable[lugar]
+
+Ej.
+
+>>> friends=["Joe", "Maria", "Pedro", "Ricardo", "Sally"]
+>>> for friend in friends:
+	print friend	
+Joe
+Maria
+Pedro
+Ricardo
+Sally
+>>> print friends[2]
+Pedro
+
+
+
+Ej.
+
+list=['character', 35, 863.37,''] #Las listas pueden contener diferentes objetos de python
+
+
+
+Las listas son constantes, al ser una coleccion de objetos de python son usadas a menudo con iteraciones for.
+
+Las listas son mutables, es decir, sus valores pueden ser cambiados utilizando lista[lugar]=nuevo_elemento, cosa que no se puede hacer con las
+cadenas.
+Ej.
+
+>>> str='Python'
+>>> str[0]='p' #Se busca sustituir un lugar en especifico de la cadena str, esto no se puede hacer
+
+Traceback (most recent call last):
+  File "<pyshell#4>", line 1, in <module>
+    str[0]='p'
+TypeError: 'str' object does not support item assignment
+>>> str=str.lower() #En cambio se usa la funcion str.lower() para transformar todos los caracteres en lowercase
+>>> print str
+python
+>>> lista=[28,45.6,78,96.5,32] #En el caso de la lista sus elementos son mutables
+>>> print lista
+[28, 45.6, 78, 96.5, 32]
+>>> lista[1]=99 #Se especifica un lugar en la lista y se le da un nuevo valor
+>>> print lista 
+[28, 99, 78, 96.5, 32] #El cambio es observable
+
+La funcion str.len() tambien puede utilizarse en listas para saber la extension de estas y de hecho la funcion len() nos puede decir el numero
+ de elementos de cualquier arreglo.
+
+Funcion Range.
+
+Esta funcion produce una lista de una extension dada por el programador.
+
+Ej.
+>>> print range(8)
+[0, 1, 2, 3, 4, 5, 6, 7]
+>>> print range(len(lista)) #en este caso se combinan las dos fuciones len() y range()
+[0, 1, 2, 3, 4]
+
+
+El objetivo de utilizar estas dos funciones es poder saber el lugar de cada elemento de una lista mientras se va avanzando en la lectura de esta
+a lo largo de una iteracion.
+Ej.
+>>> friends=['Memo','Martin','Lalo','Fredo','Arturo','Pitt']
+>>> for i in range(len(friends)):
+	print '\t'
+	print i
+	print 'Happy New Year', friends[i]
+
+	
+	
+0
+Happy New Year Memo
+	
+1
+Happy New Year Martin
+	
+2
+Happy New Year Lalo
+	
+3
+Happy New Year Fredo
+	
+4
+Happy New Year Arturo
+	
+5
+Happy New Year Pitt
+
+
+
+
+
+Asi como se pueden concatenar cadenas utilizando + con caracteres, se pueden concatenar listas.
+Ej.
+
+>>> fyl=friends+lista
+>>> print fyl
+['Memo', 'Martin', 'Lalo', 'Fredo', 'Arturo', 'Pitt', 28, 99, 78, 96.5, 32] #Aqui se produjo una lista nueva pero se puede simplemente utilizar print con la concatenacion.
+
+
+De nuevo, asi como en las cadenas, las listas se pueden partir con el operador [parametro:hasta_pero_sin_incluir_parametro]
+
+Ej.
+
+>>> len(fyl)
+11
+>>> print fyl[3:10]
+['Fredo', 'Arturo', 'Pitt', 28, 99, 78, 96.5]
+
+
+Se puede crear una lista con la funcion list() y asignando una variable a esto, en este caso se generaria una lista vacia.
+ Ej.
+>>> x=list()
+>>> print x
+[]
+
+O tambien se pueden crear listas a partir de una cadena.
+
+Ej.
+
+>>> y='hola mundo'
+>>> x=list(y) #se le dice a python que cree una lista x con los elementos de la cadena y
+>>> print x
+['h', 'o', 'l', 'a', ' ', 'm', 'u', 'n', 'd', 'o'] #cada uno de los elementos de la cadena son ahora los elementos de una lista
+>>> range(len(x))
+[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+>>> type(x)
+<type 'list'>
+>>> type(y)
+<type 'str'>
+>>> dir(x) #python da una lista de todas las funciones utilizables con una lista
+['__add__', '__class__', '__contains__', '__delattr__', '__delitem__', '__delslice__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getslice__', '__gt__', 
+'__hash__', '__iadd__', '__imul__', '__init__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__reversed__', '__rmul__', 
+'__setattr__', '__setitem__', '__setslice__', '__sizeof__', '__str__', '__subclasshook__', 'append', 'count', 'extend', 'index', 'insert', 'pop', 'remove', 'reverse', 'sort']
+
+
+
+Uso de funcion list.append()
+
+La funcion append() sirve para ir mutando una lista previamente creada, se utiliza convenientemente con iteraciones para ir llenando una lista de tamanio indefinido
+Ej.
+
+ch=0
+i=1
+stuff=list() #Se crea una lista vacia
+print 'Enter ch to toggle character off or on'
+while True:
+    r=raw_input('Enter list elements: ') #Se crea una variable que tome valores input y que estos sean introducidos a la lista por medio de append
+    if r=='exit+-': #El usuario puede introducir el comando exit+- para salir de la creacion de la lista
+        break
+    if r=='ch': #Se prende o se apaga la captura de caracteres, es decir, los numeros que el usuario entre se tomaran como caracteres numericos o como valores
+        if i%2!=0: #Impar, apagar characteres
+            ch=1
+            i=i+1
+            continue
+        else: #Par prender caracteres
+            ch=0
+            i=i+1
+            continue
+    if ch==1: #El caso impar da como resultado la captura de valores
+        dpos=r.find('.') #Caso float en la cadena
+        if dpos!=-1: #Si el valor que se le asigno a dpos con r.find() se muto de su valor por defecto -1, eso quiere decir que el numero es float
+            try: #Intentara convertir r en un float, en el caso de que sea una cadena con un punto ira a except
+                r=float(r)
+                stuff.append(r)
+            except:
+                stuff.append(r)
+                continue
+        else: #Si el valor no se muto y sigue siendo -1 se convertira en int
+            try: #Intentara convertir r en un int, en el caso de que sean caracteres se ira a except
+                r=int(r)
+                stuff.append(r)
+            except:
+                stuff.append(r)
+                continue
+    else: #Si esta prendida la captura de caracteres, simplemente todo se tomara como cadenas
+        stuff.append(r)
+
+for i in range(len(stuff)): #Finalmente se imprimen los elementos de la lista utilizando la funcion len() adentro de range() con la finalidad de no tener que crear una variable de conteo
+    print '\n'
+    print i #Como i esta tomando los valores creados por la lista ascendente formada por la longitud de la lista original i no se necesita utilizar i=i+1
+    print stuff[i] #Simplemente se van imprimendo los elementos de la lista en cada lugar denotado por el subindice []
+print stuff    
+print 'List length: ', len(stuff)
+
+
+
+El ejemplo anterior itroduce valores a una lista indefinida y deja que el usuario decida si quiere que los numeros introducidos se guarden como caracteres numericos o como valores int o float
+a su vez va llenando la lista mediante la funcion append.
+
+
+Funcion sort()
+Una lista puede ser ordenada automaticamente (sort) mediante el uso de la funcion list.sort()
+Ej.
+j=0
+i=0
+li=list()
+while True:
+    try:
+        rfile=raw_input('Enter file name in file.txt format: ')
+        fh=open(rfile)
+        break
+    except:
+        print 'Enter a valid file name'
+        continue
+for line in fh:
+    line=line.rstrip()
+    for letter in line:              
+        if letter!=' ': #Se separan las palabras
+            i=i+1  
+            continue
+        else:
+            word=line[j:i]
+            word=word.strip()
+            li.append(word)
+            i=i+1
+            j=i
+    i=0
+    j=0
+
+li.sort() #se ordena la lista, no es necesario igualar la funcion con la lista original porque las listas son mutables.
+print li    
+
+Otras funciones de python utilizables en listas incluyen a:
+
+max(): encuentra el valor mas grande de la lista
+min(): encuentra el valor mas pequenio de la lista
+sum(): suma los valores de la lista
+
+
+Ej. Promedio sin el uso de listas
+
+i=0
+sum=0
+print 'Enter a single float if you want decimal number'
+while True:
+    inp=raw_input('Enter values: ')    
+    if inp=='exit': break
+    try:
+        float(inp)
+    except:
+        print 'please enter only numeric values'
+        continue        
+    i=i+1
+    dpos=inp.find('.')
+    if dpos!=-1:
+        inp=float(inp)       
+    else: 
+        inp=int(inp)
+    sum=inp+sum
+av=sum/i
+print 'Average', av
+
+
+Ej. Promedio usando listas
+
+i=0
+li=list()
+print 'Enter a single float if you want decimal number'
+while True:
+    inp=raw_input('Enter values: ')
+    if inp=='exit': break
+    try:
+        float(inp)
+    except:
+        print 'please enter only numeric values'
+        continue 
+    i=i+1
+    dpos=inp.find('.')
+    if dpos!=-1:
+        inp=float(inp)
+        li.append(inp)
+    else: 
+        inp=int(inp)
+        li.append(inp)
+average=(sum(li))/(len(li))
+print 'Average: ', average
+
+
+Funcion split().
+
+La funcion split es una funcion built-in de python la cual actua dividiendo cualquier cadena en todas sus palabras automaticamente, es decir, busca cualquier espacio en la cadena y a partir
+de cada espacio cuenta una nueva palabra, esto crea una lista.
+Ej. Funcion Split emulada.
+for line in fh:
+    line=line.rstrip()
+    for letter in line:              
+        if letter!=' ': #Se separan las palabras
+            i=i+1  
+            continue
+        else:
+            word=line[j:i]
+            word=word.strip()
+            li.append(word)
+            i=i+1
+            j=i
+    i=0
+    j=0
+En el caso anterior, todas las palabras de un texto se guardan en una lista, justo como en la funcion split()
+
+Ej. Funcion split, como funciona.
+
+>>> cadena='Esto es una cadena'
+>>> sp=cadena.split()
+>>> print sp
+['Esto', 'es', 'una', 'cadena']
+>>> for i in range(len(sp)):
+	word=sp[i]
+	print word
+
+	
+Esto
+es
+una
+cadena
+>>> 
+
+
+La funcion split toma como delimitador por default un espacio o mas espacios, sin embargo se puede especificar un delimitador diferente.
+
+Ej.
+>>> st='grandes                espacios                  abiertos'
+>>> sp=st.split()
+>>> print sp
+['grandes', 'espacios', 'abiertos']
+>>> sy='otros:espacios:no:delimitados:por:espacios:en:si:sino:por:dos:puntos'
+>>> sp=sy.split()
+>>> print sy
+otros:espacios:no:delimitados:por:espacios:en:si:sino:por:dos:puntos
+>>> sp=sy.split(':')
+>>> print sp
+['otros', 'espacios', 'no', 'delimitados', 'por', 'espacios', 'en', 'si', 'sino', 'por', 'dos', 'puntos']
+>>> print len(sp)
+12
+
+Ademas con la funcion split() se puede especificar si se quiere que divida en un numero no especificado de espacios o si se quiere que divida en un numero especificado de espacios, como uno solo
+list.split(' ')
+
+
+
+Diccionarios.
+
+Las listas son una coleccion de valores en orden, los diccionarios son una coleccion de datos sin ningun orden predeterminado pero con etiquetas en ellos que permiten diferenciar un conjunto de 
+datos bajo una cierta etiqueta de otro conjunto de datos con otra etiqueta, todo esta ordenado bajo cierto criterio elegido por el programador. Este tipo de coleccion de datos es como una
+especie de base de datos. Otros ejemplos de diccionarios en otros lenguajes de programacion son:
+Associative Arrays - Perl / Php
+Properties o Map o HashMap - Java
+Property Bag - C# / .Net
+
+Entonces, un diccionario en python se puede crear mediante la funcion dict(), a continuacion un ejemplo de creacion de diccionario.
+>>> bolsa=dict() #Se le asigna a la variable bolsa la caracteristica de diccionario
+>>> bolsa['dinero']=700 #A diferencia de las listas, los diccionarios no asignan lugares en orden automaticamente, sino que cada lugar en un diccionario tiene una etiqueta que es una cadena
+>>> bolsa['tarjetas de credito']=3 #En cada etiqueta se guardan valores, todo en el orden que el programador asigna, el subindice que hasta ahora servia para asignar un valor en un cierto lugar
+de una lista ahora se utiliza para delimitar un lugar en forma de etiqueta.
+>>> bolsa['comida/papas']=3 
+>>> bolsa['chicles']=14
+>>> bolsa['articulos de belleza']=6
+>>> print bolsa
+{'chicles': 14, 'dinero': 700, 'comida/papas': 3, 'articulos de belleza': 6, 'tarjetas de credito': 3} #Se imprime el diccionario y se puede ver como este no tiene ningun orden
+asi como en la etiqueta esta presente cada valor
+>>> bolsa['dinero']=bolsa['dinero']+35 #Como en cualquier array se puede especificar un lugar en especifico, solo que en este caso en lugar de ser un numero es una etiqueta y con esto se
+pueden efectar las operaciones de siempre con los mismos operadores matematicos, funciones etc.
+>>> print bolsa['dinero']
+735
+
+Comparando listas con diccionarios.
+
+Lista
+>>> lst=list()
+>>> lst.append(9)
+>>> lst.append('Holo')
+>>> lst.append(67)
+>>> print lst
+[9, 'Holo', 67]
+>>> print lst[2]
+67
+
+Diccionario
+>>> dct=dict()
+>>> dct['Numero de alumno']=9
+>>> dct['Mensaje']='Holo'
+>>> dct['Edad']=67
+>>> print dct
+{'Edad': 67, 'Numero de alumno': 9, 'Mensaje': 'Holo'}
+>>> print dct['Edad']
+67
+
+Como se puede ver, los diccionarios son muy utiles a la hora de querer buscar ciertos valores que a un humano se le haria mucho mas facil recordar un nombre en forma de etiqueta que un lugar
+en una lista, sin embargo la lista mantiene un orden, cosa que el diccionario no hace. Los dos tipos de array son complementarios y trabajan el uno con el otro, todo el tiempo.
+
+Otra forma de crear diccionarios es por medio de: variable={'cosa1', 'cosa2', 3}, o tambien crear diccionarios vacios simplemente con: vaiable={}
+El siguiente es el primer ejemplo de uso de diccionarios, en este ejemplo se cuenta cuantas veces se repite cada nombre, o cada elemento de una lista,  de cada elemento de la lista se crea una
+etiqueta del diccionario.
+
+Ej.
+names=['John', 'Ann', 'Brenton','Royal','Pei','Dena','Patrina','Alane','Dena','Patrina','Hui','Kendrick','Robin','John','John','John','John','Dovie','Elyse','Elyse','Kendrick','Elyse','Hoa',
+'Royal','John','Dena','Royal','Royal','Patrina','Cami','John','Efrain','Cami','John','Yon','Nicholas','Waylon','Reinaldo','Efrain','Efrain','Efrain','Janice'] #Se crea una lista con nombres
+dct=dict() #Se crea un diccionario vacio
+least_common=[] 
+most_name=[]
+lst=list() #Se crea una lista aparte vacia
+for name in names: 
+    if name not in dct: #Si el nombre no esta en el diccionario, se crea en el diccionario una etiqueta nueva a la cual le corresponde el valor de uno
+        dct[name]=1
+    else:
+        dct[name]=dct[name]+1 #Si el nombre esta en el diccionario, a una etiqueta existente con ese nombre se le suma a su valor anterior un uno
+        
+for name in dct: #Una vez completamente lleno el diccionario se crea una lista con los valores de cada etiqueta del diccionario, la variable nombre pasara a ser cada etiqueta del diccionario
+    i=dct[name]  #En el caso de esta iteracion se puede observar que estas se pueden utilizar en diccionarios tambien, en cada etiqueta.
+    lst.append(i) #La lista toma los valores de cada etiqueta
+    
+lst.sort() #Se ordena de menor a mayor la lista
+i=len(lst) #A la longitud de lista se le asigna una variable.
+
+
+for name in dct: #Se guardaran todas las etiquetas con una repeticion en una lista
+    if dct[name]==lst[0]:
+        least_common.append(name)
+    elif dct[name]== lst[i-1]: #Se guardan todas las etiquetas que tengan en ellas un valor igual al de el utlimo elemento de la lista con todos los valores de las etiquetas, esto
+        most_name.append(name)   #para obtener las etiquetas que mas se repitan, todo esto gracias a el ordenamiento de la lista.
+
+print dct        
+print 'Most common names are: ', most_name 
+print 'Repeating:', lst[i-1]
+print '\n'
+print 'Least common names are: ', least_common
+
+
+
+El acto de contar los elementos de una lista con diccionarios es tan comun que hay una funcion en si que hace lo mismo que la primera iteracion en el programa anterior mucho mas simple,
+ esta funcion es get().
+
+Por lo anterior se hace lo siguiente en la iteracion anterior.
+
+Ej.
+for name in names:
+    dct[name]=dct.get(name,0)+1 #El valor 0 de get esta por defecto, es el valor inicial del contador, si obtiene una etiqueta que no estaba presente cambiara ese valor al posterior o creara 
+                                # una nueva etiqueta, si no mantendra el valor que ya estaba.
+
+
+
+Tambien se pueden crear listas a partir de diccionarios, apartir de las etiquetas de los diccionarios de una forma muy simple, como se ilustra en el ejemplo siguiente:
+Ej.
+>>> dinero={'Jose': 80, 'pepe': 50, 'Andrea:': 2341234}
+>>> lst=list(dinero) #Aqui como se puede observar, se utiliza la funcion list() para crear una lista cuyos elementos sean las etiquetas del diccionario
+>>> print lst
+['Jose', 'Andrea:', 'pepe']
+
+Ademas se pueden hacer una lista a partir de los valores de un diccionario sin necesidad de hacer la segunda iteracion en el programa anterior, mediante la funcion diccionario.values().
+>>> lst= list(dinero.values())
+>>> print lst
+[80, 2341234, 50]
+
+O darle a la lista los valores de las etiquetas, aunque eso sea lo que se haga por default, por medio de la funcion diccionario.keys().
+>>> lst= list(dinero.keys())
+>>> print lst
+['Jose', 'Andrea:', 'pepe']
+
+Como se puede observar el los ejemplos anteriores, estas funciones se pueden utilizar tambien con para solo imprimirlas sin necesidad de crear una lista con estos elementos.
+Ej.
+>>> print dinero
+{'Jose': 80, 'Andrea:': 2341234, 'pepe': 50}
+>>> print dinero.keys()
+['Jose', 'Andrea:', 'pepe'] #Como se puede observar, lo que se imprime es una lista, sin embargo tan solo es temporal.
+>>> print dinero.values()
+[80, 2341234, 50]
+
+Y ademas se puede utilizar la funcion diccionario.items() para crear una lista con las etiquetas y los valores, este tipo de lista se llena con tuples (se hablara posteriormente de ellos).
+
+>>> lst=list(dinero.items())
+>>> print list
+<type 'list'>
+>>> print lst
+[('Jose', 80), ('Andrea:', 2341234), ('pepe', 50)]
+>>> print len(lst) #Como se puede ver, al imprimir la longitud de la lista nos regresa 3 elementos en total, esto quiere decir que, como se dijo antes, cada elemento de la lista es un tuple.
+3
+
+Lo anterior se puede utilizar entre otras cosas para imprimir el diccionario a manera de tabla y de una forma muy simple.
+>>> for key, value in lst: #Se utilizan dos variables en la iteracion for, esto es muy poco comun en otros lenguajes, como por ejemplo C donde seria obligatorio utilizar dos iteraciones.
+	print key,value
+
+	
+Jose 80
+Andrea: 2341234
+pepe 50
+>>> 
+
+
+
+Tuples.
+
+Son la tercera clase de coleccion, primero fueron las listas, despues los diccionarios y ahora los tuples.
+Los Tuples son bastante como las listas en terminos de sintaxis, para crear un tuple en vez de usar [] se utiliza (), es decir:
+Ej.
+>>> t=('Juan', 'Pedro', 'Lorena', 'Carlos', 'Andrea')
+>>> print t
+('Juan', 'Pedro', 'Lorena', 'Carlos', 'Andrea')
+
+Sin embargo los tuples difieren de las listas en el hecho de que no son mutables, una vez creado un tuple no se puede cambiar un cierto elemento
+de este por otro elemento cualquiera.
+Ej.
+>>> t[2]='Melissa'
+
+Traceback (most recent call last):
+  File "<pyshell#2>", line 1, in <module>
+    t[2]='Melissa'
+TypeError: 'tuple' object does not support item assignment
+
+
+Como se dijo anteriormente, los tuples son inmutables, lo que quiere decir que funciones como append(), sort() o reverse() etc. no son utilizables.
+
+
+
+
+
+
+
+
+>>> dir(t)
+['__add__', '__class__', '__contains__', '__delattr__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__', '__getnewargs__', '__getslice__', '__gt__', '__hash__', 
+'__init__', '__iter__', '__le__', '__len__', '__lt__', '__mul__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__rmul__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', 
+'count', 'index']
+
+Con la funcion dir() se puede encontrar las funciones utilizables con un Tuple.
+
+Los tuples son colecciones mas eficientes que las listas, esto porque los Tuples son inmutables, lo que quiere decir que utilizan menos memoria y se puede acceder a datos mas rapidamente.
+Los tuples se utilizan como listas temporales, es decir, como no se modificaran son listas que tendran valores predeterminados,
+Se pueden introducir varias variables en un tuple y darle una igualdad con varios valores en otro tuple, esto quiere decir que se pueden hacer varias operaciones al mismo tiempo.
+Ej.
+>>> (a, b, c)=(1,2,3)
+>>> a
+1
+>>> b
+2
+>>> c
+3
+>>> 
+
+Anteriormente en los diccionarios se utilizaron tuples en las iteraciones para la creacion de las tablas a partir de etiquetas con valores del diccionario,
+asi como tambien se crearon listas compuestas de tuples al crear una lista con los elementos de un diccionario mediante la funcion diccionario.items().
+Ej.
+>>> dct={'Edad': 67, 'Numero de alumno': 9, 'Mensaje': 'Holo'}
+>>> lst=list(dct.items())
+>>> print lst
+[('Edad', 67), ('Numero de alumno', 9), ('Mensaje', 'Holo')] #Como se puede observar al crear una lista a partir de un diccionario con todos sus elementos, la lista automaticamente se compone
+							     #de tuples los, por lo cual si una lista es mutable, se puede introducir tuples diferentes en la lista, mas no modificar los tuples
+							     #ya existentes en esta.
+
+
+Los tuples, asi como las variables, son comparables mediante los operadores logicos. La manera la que esto funciona es la siguiente.
+Ej.
+>>> ('a','b','c')<('b','c','d') #Aqui cada elemento del tuple es menor por lo tanto es obvio que el tuple de la izquierda es menor.
+True
+>>> (3,7,10)>(20,1,0) #Si embargo aqui como el primer elemento del tuple de la izquierda no es mayor que el primer elemento del tuple de la derecha la sentencia es falsa
+False
+>>> (20,30,40)>(14,1,2000)         #De manera homologa, como el primer elemento del tuple es mayor entonces todo el tuple se toma como mayor, por lo tanto los operadores logicos en tuples operan 
+True        comparando de izquierda a derecha y en cuanto la sentencia se cumpla en cualquier valor del tuple o se acabe el tuple y se refute la sentencia se da un resultado de la afirmacion dada.
+
+
+Asi como se acaba de demostrar los tuples son comparables, por lo tanto seria logico pensar que una lista compuesta de tuples puede ser ordenada con la funcion sort()
+Ej.
+>>> lst.sort()
+>>> print lst
+[('Edad', 67), ('Mensaje', 'Holo'), ('Numero de alumno', 9)]
+>>> 
+
+Efectivamente, la anterior suposicion es correcta.
+
+Se puede cortar aun mas el camino para ordenar un diccionario mediante listas utilizando la funcion sorted(), esta funcion crea automaticamente una copia de una lista y la ordena, muy util si no
+se quiere utilizar la funcion list() para crear una lista y posteriormente ordenar esa lista para despues imprimirla
+
+>>> lst=sorted(dct.items())
+>>> print lst
+[('Edad', 67), ('Mensaje', 'Holo'), ('Numero de alumno', 9)]
+>>> for i,j in sorted(dct.items()): #Todo el procedimiento para el ordenamiento de la lista es resumible en este simple bucle.
+	print i, j
+
+	
+Edad 67
+Mensaje Holo
+Numero de alumno 9
+
+
+En el siguiente ejemplo se expone como se puede acortar el proceso de ordenar un diccionario mediante la funcion sorted() y empezando con la cifra y despues la etiqueta.
+
+Ej.
+
+>>> dct={'Yon': 1, 'Nicholas': 1, 'Hoa': 1, 'Patrina': 3, 'Elyse': 3, 'Ann': 1, 'Waylon': 1, 'Royal': 4, 'Hui': 1, 'Efrain': 4, 'Cami': 2, 'Brenton': 1, 'Janice': 1, 'Pei': 1, 'Kendrick': 2, 
+'Reinaldo': 1, 'Dena': 3, 'John': 8, 'Dovie': 1, 'Robin': 1, 'Alane': 1} #Creacion del diccionario
+>>> lst=list(dct.items()) #A partir del diccionario anterior se crea una lista que contendra tuples
+>>> print lst
+[('Yon', 1), ('Robin', 1), ('John', 8), ('Dovie', 1), ('Alane', 1), ('Hoa', 1), ('Patrina', 3), ('Elyse', 3), ('Ann', 1), ('Royal', 4), ('Hui', 1), ('Efrain', 4), ('Cami', 2), ('Brenton', 1), 
+('Pei', 1), ('Kendrick', 2), ('Janice', 1), ('Nicholas', 1), ('Dena', 3), ('Waylon', 1), ('Reinaldo', 1)]
+>>> lst.sort() #Se utiliza la funcion sort para ordenar la lista
+>>> print lst
+[('Alane', 1), ('Ann', 1), ('Brenton', 1), ('Cami', 2), ('Dena', 3), ('Dovie', 1), ('Efrain', 4), ('Elyse', 3), ('Hoa', 1), ('Hui', 1), ('Janice', 1), ('John', 8), ('Kendrick', 2), 
+('Nicholas', 1), ('Patrina', 3), ('Pei', 1), ('Reinaldo', 1), ('Robin', 1), ('Royal', 4), ('Waylon', 1), ('Yon', 1)]
+>>> for i, j in lst: #Se imprime primero la cifra y despues la etiqueta.
+	print j,i
+
+	
+1 Alane
+1 Ann
+1 Brenton
+2 Cami
+3 Dena
+1 Dovie
+4 Efrain
+3 Elyse
+1 Hoa
+1 Hui
+1 Janice
+8 John
+2 Kendrick
+1 Nicholas
+3 Patrina
+1 Pei
+1 Reinaldo
+1 Robin
+4 Royal
+1 Waylon
+1 Yon
+
+>>> for i, j in sorted(dct.items()): #Todo lo anterior se puede resumir en esto gracias a la utilizacion de la funcion sorted(), sin embargo en este caso solo se imprime, no se tiene una lista en si
+	print j,i
+
+	
+1 Alane
+1 Ann
+1 Brenton
+2 Cami
+3 Dena
+1 Dovie
+4 Efrain
+3 Elyse
+1 Hoa
+1 Hui
+1 Janice
+8 John
+2 Kendrick
+1 Nicholas
+3 Patrina
+1 Pei
+1 Reinaldo
+1 Robin
+4 Royal
+1 Waylon
+1 Yon
+
+
+En el caso siguiente se llena en si la lista con los elementos del diccionario ordenados en forma de tuples, con la cifra primero y la etiqueta despues
+
+>>> lst=list()
+>>> for i, j in sorted(dct.items()): #Se ordenan automaticamente los elementos del diccionario conforme se van leyendo en el bucle
+	lst.append((j,i)) #Se llena la lista con los elemenentos siendo tuples acomodados alreves, por lo tanto la lista en si ya es lo que se quiere imprimir
+
+	
+>>> print lst
+[(1, 'Alane'), (1, 'Ann'), (1, 'Brenton'), (2, 'Cami'), (3, 'Dena'), (1, 'Dovie'), (4, 'Efrain'), (3, 'Elyse'), (1, 'Hoa'), (1, 'Hui'), (1, 'Janice'), (8, 'John'), (2, 'Kendrick'), 
+(1, 'Nicholas'), (3, 'Patrina'), (1, 'Pei'), (1, 'Reinaldo'), (1, 'Robin'), (4, 'Royal'), (1, 'Waylon'), (1, 'Yon')]
+>>> for i,j in lst: #Por la misma razon del comentario anterior simplemente se imprime la lista como esta en forma de tabla
+	print i, j
+
+	
+1 Alane
+1 Ann
+1 Brenton
+2 Cami
+3 Dena
+1 Dovie
+4 Efrain
+3 Elyse
+1 Hoa
+1 Hui
+1 Janice
+8 John
+2 Kendrick
+1 Nicholas
+3 Patrina
+1 Pei
+1 Reinaldo
+1 Robin
+4 Royal
+1 Waylon
+1 Yon
+
+>>> lst.sort(reverse=True) #De esta forma se ve mas clara la utilidad de comenzar con la cifra, aqui se ordena la lista de mayor a menor por numero
+>>> for i,j in lst: #De esta forma sabiendo la forma en la que se comparan los tuples se puede imprimir una lista basada en cuantas veces se repite mas un nombre 
+	print j,i   #Al imprimir se invierte el orden en el que estan los tuples en la lista para que aparezca primero el nombre y despues la cifra
+
+	
+John 8
+Royal 4
+Efrain 4
+Patrina 3
+Elyse 3
+Dena 3
+Kendrick 2
+Cami 2
+Yon 1 #En el caso de los que estan empatados, la sentencia logica en tuples dicta que se ordenen por la siguiente posicion en el tuple, la cual es la etiqueta.
+Waylon 1
+Robin 1
+Reinaldo 1
+Pei 1
+Nicholas 1
+Janice 1
+Hui 1
+Hoa 1
+Dovie 1
+Brenton 1
+Ann 1
+Alane 1
+
+
+
+El siquiente es un ejemplo para contar las 10 palabras que mas se repiten y que menos se repiten en un texto el cual lee el programa.
+
+Ej.
+while True:
+    lst=list()
+    names=list()
+    dct=dict()
+    inp=raw_input('Read file / enter line of text / exit (r/t/e)')
+    most_name= []
+    least_common= []
+    if inp is 'r': #En la opcion de lectura se utiliza el metodo de la lista con tuples
+        inp=raw_input('Enter file in .txt form: ')
+        try:
+            fhand= open(inp)
+        except:
+            print 'please enter a valid filename'
+            continue
+    
+        for line in fhand:
+            if line is ' ':
+                continue
+            line=line.strip()
+            names=line.split()
+            for name in names:
+                dct[name]=dct.get(name,0)+1
+            names=[]
+            
+        for i,j in dct.items():
+            lst.append((j,i))
+            
+        lst.sort(reverse=True)
+        if len(lst)>=10:
+            print '\n'
+            print 'Most common words are:  \n' 
+            for i,j in lst[:10]:
+                print j, i
+            k=(len(lst))-1
+            print '\n'
+            print 'Least common words are: ', 
+            print '\n'
+        
+            for i,j in lst[k-9:k+1]:
+                print j,i
+       
+        print lst        
+    
+    elif inp is 't': #En esta opcion de texto, obtiene la ayuda de una lista que contiene solo los valores de las etiquetas del diccionario, en este caso no se utilizan tuples para contrastar
+        inp=raw_input('Enter line of text: ')
+        inp=inp.strip()
+        names=inp.split()
+        for name in names:
+            dct[name]=dct.get(name,0)+1
+           
+        for name in dct:
+            i=dct[name]
+            lst.append(i)
+    
+        lst.sort()
+        i=len(lst)
+
+        for name in dct:
+            if dct[name]==lst[0]:
+                least_common.append(name)
+            elif dct[name]== lst[i-1]:
+                most_name.append(name)
+
+        print dct        
+        print 'Most common words are: ', most_name 
+        print 'Repeating:', lst[i-1]
+        print '\n'
+        print 'Least common words are: ', least_common
+    elif inp is 'e':
+        print 'buh bye'
+        break            
+    else:
+        print 'Please enter valid option'
+        continue 
+
+
+Una forma aun mas corta para ordenar un diccionario por medio de una lista de tuples es a traves de una lista dinamica, esto se hace de la siguiente forma:
+Ej.
+>>> c = {'a':10, 'b':1, 'c':22}
+
+>>> print sorted( [ (v,k) for k,v in c.items() ] )
+
+[(1, 'b'), (10, 'a'), (22, 'c')]
+
+Como se puede observar ya ni siquiera se tiene que crear la lista para guardar los tuples que contengan a los elementos del diccionario si no que a traves de la lista dinamica se puede hacer todo,
+este metodo hace que la lista utilizada por el sistema sea deshechable y se libere espacio inmediatamente (de ahi que sea una lista dinamica.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
